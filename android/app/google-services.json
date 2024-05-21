@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "302264038190",
+    "project_id": "bookworm-2024",
+    "storage_bucket": "bookworm-2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302264038190:android:c8db91bb5247d966c0c0bf",
+        "android_client_info": {
+          "package_name": "com.example.bookworm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZqI0pgH56jfponbego6U1uYLsEy7QNNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
