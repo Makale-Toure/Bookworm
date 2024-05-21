@@ -21,10 +21,16 @@ class _AddBooksState extends State<AddBooks> {
       setState(() {
         barcode = result;
       });
-      // Assume you have a function to get book details from barcode
-      String title = "Sample Book Title";
-      String author = "Sample Author";
-      _dbHelper.insertBook(Book(barcode: barcode, title: title, author: author));
+      try {
+        String bookInfo = await _barcodeScanService.getBookInfo(barcode);
+        // Parse the bookInfo string to get title and author
+        // This depends on the structure of the response from the API
+        String title = "Title"; // Replace with actual parsing
+        String author = "Author"; // Replace with actual parsing
+        _dbHelper.insertBook(Book(barcode: barcode, title: title, author: author));
+      } catch (e) {
+        print('Failed to load book info: $e');
+      }
     }
   }
 

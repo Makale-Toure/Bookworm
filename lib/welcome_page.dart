@@ -1,7 +1,8 @@
 import 'dart:async';
 
+import 'package:bookworm/login_page.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _WelcomePageState extends State<WelcomePage>{
     super.initState();
     Timer(Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => HomePage()),
+      MaterialPageRoute(builder: (context) => LoginPage()),
       );
     });
   }

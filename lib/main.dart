@@ -3,6 +3,7 @@ import 'package:bookworm/welcome_page.dart';
 import 'package:bookworm/screens/add_books.dart';
 import 'package:bookworm/screens/books_in_progress.dart';
 import 'package:bookworm/screens/search_store.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(BookwormApp());
@@ -16,6 +17,7 @@ class BookwormApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
         scaffoldBackgroundColor: const Color.fromARGB(255,234, 221, 202),
+        textTheme: GoogleFonts.montserratTextTheme(),
       ),
       home: WelcomePage(),
     );
