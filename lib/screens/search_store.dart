@@ -21,7 +21,16 @@ class _SearchStoreState extends State<SearchStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Find Book Stores')),
+        title: Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Find bookstores'),
+              SizedBox(width: 10),
+              Icon(Icons.store, color: Colors.brown,),
+            ],
+          ),
+        ),
         backgroundColor: const Color.fromARGB(255,234, 221, 202),
       ),
       body: Center(

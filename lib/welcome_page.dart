@@ -13,7 +13,7 @@ class _WelcomePageState extends State<WelcomePage>{
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () {
+    Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => LoginPage()),
       );
@@ -43,6 +43,9 @@ class _WelcomePageState extends State<WelcomePage>{
               height: 200,
             ),
             SizedBox(height: 80.0),
+            CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.brown),
+            ),
           ],
         ),
       ),

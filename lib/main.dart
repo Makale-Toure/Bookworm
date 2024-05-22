@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bookworm/welcome_page.dart';
 import 'package:bookworm/screens/add_books.dart';
-import 'package:bookworm/screens/books_in_progress.dart';
+import 'package:bookworm/screens/scanned_books.dart';
 import 'package:bookworm/screens/search_store.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,6 +10,7 @@ void main() {
 }
 
 class BookwormApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
 
   static List<Widget> _widgetOptions = <Widget>[
     AddBooks(),
-    BooksInProgress(),
+    ScannedBooks(),
     SearchStore(),
   ];
 
@@ -53,7 +54,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.scanner),
+            icon: Icon(Icons.qr_code_scanner),
             label: 'Scanner un livre',
           ),
           BottomNavigationBarItem(

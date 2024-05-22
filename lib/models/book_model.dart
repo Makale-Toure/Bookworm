@@ -5,6 +5,7 @@ class Book {
   final String author;
   final bool isReading;
 
+
   Book({this.id, required this.barcode, required this.title, required this.author, this.isReading = false});
 
   Map<String, dynamic> toMap() {

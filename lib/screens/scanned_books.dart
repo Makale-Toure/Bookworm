@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../databases/sqlite_database.dart';
 import '../models/book_model.dart';
 
-class BooksInProgress extends StatefulWidget {
+class ScannedBooks extends StatefulWidget {
   @override
-  _BooksInProgressState createState() => _BooksInProgressState();
+  _ScannedBooksState createState() => _ScannedBooksState();
 }
 
-class _BooksInProgressState extends State<BooksInProgress> {
+class _ScannedBooksState extends State<ScannedBooks> {
   final SqliteDatabase _dbHelper = SqliteDatabase();
 
   void markAsReading(int id, bool isReading) async {
@@ -28,14 +28,25 @@ class _BooksInProgressState extends State<BooksInProgress> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text('Books in progress')),
+            title: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('Scanned books'),
+                  SizedBox(width: 10),
+                  Icon(Icons.menu_book, color: Colors.brown,),
+                ],
+              ),
+            ),
           backgroundColor: const Color.fromARGB(255,234, 221, 202),
         ),
         body: FutureBuilder<List<Book>>(
         future: _dbHelper.getBooks(),
     builder: (context, snapshot) {
     if (snapshot.connectionState == ConnectionState.waiting) {
-    return Center(child: CircularProgressIndicator());
+    return Center(child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.brown)
+    ));
     }
     if (snapshot.hasError) {
     return Center(child: Text('Error: ${snapshot.error}'));
