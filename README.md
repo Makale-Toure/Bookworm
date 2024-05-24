@@ -1,6 +1,6 @@
 # Bookworm
 
-[![forthebadge](https://forthebadge.com/images/badges/made-with-flutter.svg)](https://forthebadge.com)  [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)  [![forthebadge](https://forthebadge.com/images/badges/powered-by-black-magic.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-flutter.svg)](https://forthebadge.com)  [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)  [![forthebadge](https://forthebadge.com/images/badges/its-not-a-lie-if-you-believe-it.svg)](https://forthebadge.com)
 
 Une application qui me permettra de répertorier mes livres grâce au scan du code-barres. Je pourrais aussi marquer mes lectures en cours et trouver les points de vente d'un livre scanné.
 
