@@ -7,7 +7,7 @@ Une application qui me permettra de répertorier mes livres grâce au scan du co
 
 ### Pré-requis
 
-Afin de build le projet, il faudra d'abord installer [Flutter]([https://atom.io/](https://docs.flutter.dev/get-started/install))
+Afin de build le projet, il faudra d'abord installer [Flutter]([https://docs.flutter.dev/get-started/install])
 
 - Programme 1
 - Programme 2
