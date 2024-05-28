@@ -14,6 +14,7 @@ class AddBooks extends StatefulWidget {
 }
 
 class _AddBooksState extends State<AddBooks> {
+  bool isScanSuccess = false;
   final SqliteDatabase _dbHelper = SqliteDatabase();
   final BarcodeScanService _barcodeScanService = BarcodeScanService();
   String barcode = '';
@@ -46,14 +47,13 @@ class _AddBooksState extends State<AddBooks> {
               ? bookData['details']['authors'][0]['name']
               : 'No author found';
           coverUrl = 'http://covers.openlibrary.org/b/isbn/$barcode-M.jpg';
+          isScanSuccess = true;
         });
         _dbHelper.insertBook(Book(barcode: barcode, title: title, author: author));
       }
     } else {
       setState(() {
-        title = 'Failed to fetch book details';
-        author = '';
-        coverUrl = '';
+        isScanSuccess = false;
       });
     }
   }
@@ -96,21 +96,6 @@ class _AddBooksState extends State<AddBooks> {
                 scanBarcode();
               }),
             SizedBox(height: 20),
-            if (title.isNotEmpty) ...[
-              Text('Title: $title', style: TextStyle(fontSize: 20)),
-              Text('Author: $author', style: TextStyle(fontSize: 20)),
-              coverUrl.isNotEmpty ? Image.network(coverUrl) : Container(),
-            ]
-            else ...[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.error, color: Colors.red),
-                  SizedBox(width: 10),
-                  Text('No book details found for \n this scan', style: TextStyle(fontSize: 20)),
-                ],
-              ),
-            ],
           ],
         ),
       ),

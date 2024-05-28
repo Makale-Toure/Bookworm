@@ -38,7 +38,7 @@ class _ScannedBooksState extends State<ScannedBooks> {
                 ],
               ),
             ),
-          backgroundColor: const Color.fromARGB(255,234, 221, 202),
+          backgroundColor: const Color.fromARGB(255, 234, 221, 202),
         ),
         body: FutureBuilder<List<Book>>(
         future: _dbHelper.getBooks(),

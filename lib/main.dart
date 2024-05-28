@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:bookworm/welcome_page.dart';
-import 'package:bookworm/screens/add_books.dart';
-import 'package:bookworm/screens/scanned_books.dart';
-import 'package:bookworm/screens/search_store.dart';
+import 'package:bookworm/pages/welcome_page.dart';
+import 'package:bookworm/pages/add_books.dart';
+import 'package:bookworm/pages/scanned_books.dart';
+import 'package:bookworm/pages/search_store.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Lectures en cours',
+            label: 'Bibliothèque',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.store),
