@@ -2,6 +2,8 @@ import 'package:bookworm/models/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import '../models/book_model.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 
 class SqliteDatabase {
   static final SqliteDatabase _instance = SqliteDatabase._internal();
@@ -13,6 +15,12 @@ class SqliteDatabase {
   }
 
   SqliteDatabase._internal();
+
+  String encryptPassword(String password) {
+    final bytes = utf8.encode(password);
+    final hash = sha256.convert(bytes);
+    return hash.toString();
+  }
 
   Future<Database> get booksDatabase async {
     if (_booksDatabase != null) return _booksDatabase!;
@@ -62,7 +70,13 @@ class SqliteDatabase {
   }
   Future<void> insertUser(User user) async {
     final db = await usersDatabase;
-    await db.insert('users', user.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+    String encryptedPassword = encryptPassword(user.password);
+    User userWithEncryptedPassword = User(
+      id: user.id,
+      username: user.username,
+      password: encryptedPassword,
+    );
+    await db.insert('users', userWithEncryptedPassword.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<List<Book>> getBooks() async {
@@ -74,10 +88,11 @@ class SqliteDatabase {
   }
   Future<User?> getUser(String username, String password) async {
     final db = await usersDatabase;
+    String encryptedPassword = encryptPassword(password);
     final List<Map<String, dynamic>> maps = await db.query(
       'users',
       where: 'username = ? AND password = ?',
-      whereArgs: [username, password],
+      whereArgs: [username, encryptedPassword],
     );
     if (maps.isNotEmpty) {
       return User.fromMap(maps.first);

@@ -1,9 +1,12 @@
 import 'package:bookworm/models/user_model.dart';
+import 'package:fancy_button_flutter/fancy_button_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:bookworm/databases/sqlite_database.dart';
 
 
 class ConnexionPage extends StatefulWidget {
+  const ConnexionPage({super.key});
+
   @override
   _ConnexionPageState createState() => _ConnexionPageState();
 }
@@ -32,10 +35,11 @@ class _ConnexionPageState extends State<ConnexionPage> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('User registered successfully')),
+        const SnackBar(content: Text('User registered successfully'),
+          backgroundColor: Color.fromARGB(255, 121, 85, 72),),
       );
 
-      Navigator.pop(context); // On retourne à la pgae de login
+      Navigator.pop(context);
     }
   }
 
@@ -55,21 +59,21 @@ class _ConnexionPageState extends State<ConnexionPage> {
             children: <Widget>[
               TextFormField(
                 controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Username'),
+                decoration: const InputDecoration(labelText: 'Username'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your username';
                   }
                   return null;
                 },
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.brown,
                   fontSize: 16,
                 )
               ),
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -77,20 +81,32 @@ class _ConnexionPageState extends State<ConnexionPage> {
                   }
                   return null;
                 },
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.brown,
                   fontSize: 16,
                 )
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _isLoading
-                  ? CircularProgressIndicator()
-                  : ElevatedButton(
-                onPressed: _register,
-                child: Text('Register',
-                  style: TextStyle(color: Colors.brown),
-                ),
-              ),
+                  ? const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.brown),
+              )
+                : FancyButton(
+                button_icon: Icons.mode,
+                button_text: "  Register  ",
+                button_height: 40,
+                button_width: 150,
+                button_radius: 50,
+                button_color: Colors.brown,
+                button_outline_color: Colors.brown,
+                button_outline_width: 1,
+                button_text_color: Colors.white,
+                button_icon_color: Colors.white,
+                icon_size: 22,
+                button_text_size: 15,
+                onClick: (){
+                  _register();
+                }),
             ],
           ),
         ),

@@ -1,8 +1,7 @@
-import 'package:fancy_button_flutter/fancy_button_flutter.dart';
+import 'package:bookworm/pages/display_books.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../databases/sqlite_database.dart';
 import '../models/book_model.dart';
 import '../services/barcodescan_service.dart';
 
@@ -15,7 +14,6 @@ class AddBooks extends StatefulWidget {
 
 class _AddBooksState extends State<AddBooks> {
   bool isScanSuccess = false;
-  final SqliteDatabase _dbHelper = SqliteDatabase();
   final BarcodeScanService _barcodeScanService = BarcodeScanService();
   String barcode = '';
   String title = '';
@@ -48,8 +46,18 @@ class _AddBooksState extends State<AddBooks> {
               : 'No author found';
           coverUrl = 'http://covers.openlibrary.org/b/isbn/$barcode-M.jpg';
           isScanSuccess = true;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DisplayBooks(
+                barcode: barcode,
+                title: title,
+                author: author,
+                coverUrl: coverUrl,
+              ),
+            ),
+          );
         });
-        _dbHelper.insertBook(Book(barcode: barcode, title: title, author: author));
       }
     } else {
       setState(() {
@@ -62,7 +70,7 @@ class _AddBooksState extends State<AddBooks> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -78,24 +86,26 @@ class _AddBooksState extends State<AddBooks> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Scan result: $barcode\n', style: TextStyle(fontSize: 20)),
-            FancyButton(
-              button_icon: Icons.qr_code_scanner_sharp,
-              button_text: " Scan your book ",
-              button_height: 40,
-              button_width: 175,
-              button_radius: 50,
-              button_color: Colors.brown,
-              button_outline_color: Colors.brown,
-              button_outline_width: 1,
-              button_text_color: Colors.white,
-              button_icon_color: Colors.white,
-              icon_size: 22,
-              button_text_size: 15,
-              onClick: (){
+            //Text('Scan result: $barcode\n', style: TextStyle(fontSize: 20)),
+            GestureDetector(
+              onTap: () {
                 scanBarcode();
-              }),
-            SizedBox(height: 20),
+              },
+              child: Icon(
+                Icons.qr_code_scanner_sharp,
+                size: 300.0,
+                color: Colors.brown.shade800,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Tap to Scan',
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.brown.shade800,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),

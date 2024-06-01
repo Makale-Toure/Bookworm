@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:bookworm/pages/welcome_page.dart';
 import 'package:bookworm/pages/add_books.dart';
-import 'package:bookworm/pages/scanned_books.dart';
+import 'package:bookworm/pages/library.dart';
 import 'package:bookworm/pages/search_store.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(BookwormApp());
+  runApp(const BookwormApp());
 }
 
 class BookwormApp extends StatelessWidget {
+  const BookwormApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,14 @@ class BookwormApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromARGB(255,234, 221, 202),
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
-      home: WelcomePage(),
+      home: const WelcomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -33,10 +37,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    AddBooks(),
-    ScannedBooks(),
-    SearchStore(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const AddBooks(),
+    const Library(),
+    const SearchStore(),
   ];
 
   void _onItemTapped(int index) {

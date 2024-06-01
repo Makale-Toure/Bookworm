@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../services/search_store_service.dart';
 
 class SearchStore extends StatefulWidget {
+  const SearchStore({super.key});
+
   @override
   _SearchStoreState createState() => _SearchStoreState();
 }
@@ -21,7 +23,7 @@ class _SearchStoreState extends State<SearchStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -37,22 +39,10 @@ class _SearchStoreState extends State<SearchStore> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(
-              onPressed: () => findBookStores('9783161484100'), // Example ISBN
-              child: Text('Find Stores for Example ISBN'),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: stores.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(stores[index]),
-                    onTap: () {
-                      // Handle store link click
-                    },
-                  );
-                },
-              ),
+            Text('Find a store here', style: TextStyle(
+                fontSize: 24,
+                color: Colors.brown.shade800,
+                fontWeight: FontWeight.w600)
             ),
           ],
         ),

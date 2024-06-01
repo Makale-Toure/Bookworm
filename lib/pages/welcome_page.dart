@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 
 class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
+
   @override
   _WelcomePageState createState() => _WelcomePageState();
 }
@@ -13,9 +15,9 @@ class _WelcomePageState extends State<WelcomePage>{
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => LoginPage()),
+      MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     });
   }
@@ -27,8 +29,8 @@ class _WelcomePageState extends State<WelcomePage>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 40.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 40.0),
               child: Text(
                 'Bookworm',
                 style: TextStyle(
@@ -42,8 +44,8 @@ class _WelcomePageState extends State<WelcomePage>{
               width: 200,
               height: 200,
             ),
-            SizedBox(height: 80.0),
-            CircularProgressIndicator(
+            const SizedBox(height: 80.0),
+            const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.brown),
             ),
           ],

@@ -7,6 +7,8 @@ import 'package:bookworm/pages/connexion_page.dart';
 
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -35,14 +37,16 @@ class _LoginPageState extends State<LoginPage> {
 
       if (user != null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login successful')),
+          const SnackBar(content: Text('Login successful'),
+            backgroundColor: Color.fromARGB(255, 121, 85, 72),),
         );
         Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Invalid username or password')),
+          const SnackBar(content: Text('Invalid username or password'),
+            backgroundColor: Color.fromARGB(255, 121, 85, 72),),
         );
       }
     }
@@ -64,21 +68,21 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               TextFormField(
                 controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Username'),
+                decoration: const InputDecoration(labelText: 'Username'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your username';
                   }
                   return null;
                 },
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.brown,
                   fontSize: 16,
                 )
               ),
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -86,14 +90,14 @@ class _LoginPageState extends State<LoginPage> {
                   }
                   return null;
                 },
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.brown,
                   fontSize: 16,
                 )
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _isLoading
-                  ? CircularProgressIndicator(
+                  ? const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.brown),
               )
                   : FancyButton(
@@ -112,15 +116,15 @@ class _LoginPageState extends State<LoginPage> {
                   onClick: (){
                     _login();
                   }),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ConnexionPage()),
+                    MaterialPageRoute(builder: (context) => const ConnexionPage()),
                   );
                 },
-                child: Text('Don\'t have an account? Register',
+                child: const Text('Don\'t have an account? Register',
                   style: TextStyle(color: Colors.brown),
                 ),
               ),
